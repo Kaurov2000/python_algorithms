@@ -1,7 +1,9 @@
 from collections import namedtuple
 
+
 def get_year_profit(q1, q2, q3, q4):
     return q1 + q2 + q3 + q4
+
 
 n = int(input("Введите количество предприятий: "))
 New_Enterprise = namedtuple('New_Enterprise', 'name, quarter_1, quarter_2, quarter_3, quarter_4, year_profit')

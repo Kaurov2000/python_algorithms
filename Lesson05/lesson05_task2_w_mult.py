@@ -1,7 +1,9 @@
 from collections import deque, defaultdict
 
+
 def def_zero():
     return '0'
+
 
 def hex_to_digit(x):
     if not x.isdigit():
@@ -9,11 +11,13 @@ def hex_to_digit(x):
     else:
         return int(x)
 
+
 def digit_to_hex(x):
     if x % 16 > 9:
         return chr(x % 16 + 55)
     else:
         return str(x % 16)
+
 
 def hex_sum(first_num, second_num):
     n = max(len(first_num), len(second_num))
@@ -29,6 +33,7 @@ def hex_sum(first_num, second_num):
         if in_mind > 0:
             sum_rev[n + 1] = digit_to_hex(in_mind)
     return sum_rev
+
 
 def hex_mul(first_num, second_num):
     mul_sum = defaultdict(def_zero)
@@ -49,6 +54,7 @@ def hex_mul(first_num, second_num):
         mul_sum = hex_sum(mul_sum, mul_temp)
     return mul_sum
 
+
 a = deque(input("Введите первое число: ").upper())
 b = deque(input("Введите второе число: ").upper())
 
@@ -56,17 +62,17 @@ a.reverse()
 b.reverse()
 
 first_num = defaultdict(def_zero)
-for k,v in enumerate(a):
+for k, v in enumerate(a):
     first_num[k] = v
 second_num = defaultdict(def_zero)
-for k,v in enumerate(b):
+for k, v in enumerate(b):
     second_num[k] = v
 
 sum_rev = hex_sum(first_num, second_num)
 sum_result = deque(v for v in sum_rev.values())
 sum_result.reverse()
-print("Сумма чисел равна: ", *sum_result,sep='')
+print("Сумма чисел равна: ", *sum_result, sep='')
 mul_rev = hex_mul(first_num, second_num)
 mul_result = deque(v for v in mul_rev.values())
 mul_result.reverse()
-print("Произведение чисел равно: ", *mul_result,sep='')
+print("Произведение чисел равно: ", *mul_result, sep='')
