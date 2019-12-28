@@ -8,31 +8,24 @@ MAX = 10
 array = [random.randint(MIN, MAX) for _ in range(SIZE)]
 print("Изначальный массив: ", array)
 
-def mediana(array, fst, lst):
-    if fst >= lst:
-        return True
-
+def mediana(array):
+    prev_pivot = None
     pivot = array[(len(array) // 2)]
-    done = True
-    i = fst
-    j = lst
-    while i <= j:
-        while array[i] < pivot:
-            i = i + 1
-        while array[j] > pivot:
-            j = j - 1
-        if i <= j:
-            array[i], array[j] = array[j], array[i]
-            i += 1
-            j -= 1
-            if array[i] == array[j]:
-                done = True
-            else:
-                done = False
-    return done
+    while pivot != prev_pivot:
+        i = 0
+        j = len(array) - 1
+        while i <= j:
+            while array[i] < pivot:
+                i = i + 1
+            while array[j] > pivot:
+                j = j - 1
+            if i <= j:
+                array[i], array[j] = array[j], array[i]
+                i += 1
+                j -= 1
+        prev_pivot = pivot
+        pivot = array[(len(array) // 2)]
 
-done = False
-while not done:
-    mediana(array, 0, SIZE-1)
+mediana(array)
 print("Преобразованный массив: ", array)
 print("Медиана", array[m])
